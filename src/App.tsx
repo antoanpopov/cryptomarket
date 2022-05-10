@@ -1,18 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {useBinanceMarketPrice} from "./api/binance/useBinanceMarketPrice";
+import {OrderHistory} from "./components/order-history/order-history";
+import {SearchBar} from "./components/search-bar/search-bar";
+import {ThemeProvider, createTheme, Box, Button, CssBaseline} from "@mui/material";
+import {AppBar} from "./components/layout/app-bar/app-bar";
 
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
 function App() {
 
-    const binanceResponse = useBinanceMarketPrice('BTCUSDT1');
-
-
     return (
-        <div className="App">
-            <div> {!binanceResponse.isLoading && <span>{JSON.stringify(binanceResponse.data)}</span>}</div>
-        </div>
+        <ThemeProvider theme={darkTheme}>
+            <>
+                <CssBaseline />
+                <Box>
+                    <AppBar/>
+                    <SearchBar/>
+                    <Button variant="text">Text</Button>
+                    {/*  <LatestPrice/>*/}
+                    <OrderHistory/>
+                </Box>
+            </>
+        </ThemeProvider>
     );
 }
 
