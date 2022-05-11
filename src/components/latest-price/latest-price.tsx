@@ -44,8 +44,7 @@ export const LatestPrice = () => {
     return (
         <>
             <Typography variant="h5" align="center" padding="20px 0">{queryTicker ? <>
-                Selected Pair <Typography variant="h5"
-                                          sx={{display: 'inline', fontWeight: 'bold'}}>{queryTicker}</Typography>
+                Selected Pair <span style={{display: 'inline', fontWeight: 'bold'}}>{queryTicker}</span>
             </> : 'No Asset Pair selected'}</Typography>
             {queryTicker &&
                 <>
