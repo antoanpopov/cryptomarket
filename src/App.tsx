@@ -1,8 +1,9 @@
 import React from 'react';
 import {OrderHistory} from "./components/order-history/order-history";
 import {SearchBar} from "./components/search-bar/search-bar";
-import {ThemeProvider, createTheme, Box, Button, CssBaseline} from "@mui/material";
+import {Box, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {AppBar} from "./components/layout/app-bar/app-bar";
+import {AppProvider} from "./store/provider";
 
 const darkTheme = createTheme({
     palette: {
@@ -13,18 +14,19 @@ const darkTheme = createTheme({
 function App() {
 
     return (
-        <ThemeProvider theme={darkTheme}>
-            <>
-                <CssBaseline />
-                <Box>
-                    <AppBar/>
-                    <SearchBar/>
-                    <Button variant="text">Text</Button>
-                    {/*  <LatestPrice/>*/}
-                    <OrderHistory/>
-                </Box>
-            </>
-        </ThemeProvider>
+        <AppProvider>
+            <ThemeProvider theme={darkTheme}>
+                <>
+                    <CssBaseline/>
+                    <Box>
+                        <AppBar/>
+                        <SearchBar/>
+                        {/*  <LatestPrice/>*/}
+                        <OrderHistory/>
+                    </Box>
+                </>
+            </ThemeProvider>
+        </AppProvider>
     );
 }
 
