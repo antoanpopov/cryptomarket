@@ -1,5 +1,6 @@
 import React from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {roundAmount} from "../../helpers/round-amount";
 
 interface OrdersTableProps {
     items?: {
@@ -26,7 +27,7 @@ export const OrdersTable = ({items}: OrdersTableProps) => {
                         }}
                     >
                         <TableCell scope="row">
-                            {order.amount}
+                            {roundAmount(order.amount)}
                         </TableCell>
                     </TableRow>
                 )) : <TableRow>

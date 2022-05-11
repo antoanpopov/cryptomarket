@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import {AppContext} from "../../store/context";
 import {OrderHistoryModal} from "../order-history-modal/order-history.modal";
+import {roundAmount} from "../../helpers/round-amount";
 
 export const LatestPrice = () => {
 
@@ -29,7 +30,7 @@ export const LatestPrice = () => {
     const bitfinexResponse = useBitfinexMarketPrice(queryTicker);
 
     const renderPrice = (price?: string | number) => {
-        return price ?? 'Ticker not supported by exchange.';
+        return price ? roundAmount(price) : 'Ticker not supported by exchange.';
     }
 
     const toggleHistoryModal = () => {
