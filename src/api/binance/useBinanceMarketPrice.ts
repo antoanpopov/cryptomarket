@@ -1,11 +1,12 @@
 import {useQuery} from "react-query";
 import {API_BASE_URL, QUERY} from "../constants";
 
+interface BinanceMarketPriceResponse {
+    price?: string;
+}
+
 const fetchMarketPrice = async (ticker: string) => {
     const response: any = await fetch(`${API_BASE_URL.BINANCE}/ticker/price?symbol=${ticker}`);
-    if (!response.ok) {
-        console.log(response.message);
-    }
     return response.json();
 }
 
@@ -14,11 +15,14 @@ export const useBinanceMarketPrice = (ticker: string) => {
         isLoading,
         isError,
         error,
-        data
-    } = useQuery<string, Error>([QUERY.BINANCE_GET_TICKER], () => fetchMarketPrice(ticker), {
+        data,
+    } = useQuery<BinanceMarketPriceResponse, Error>([QUERY.BINANCE_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
         /*      refetchInterval: 5000*/
-        retry: false
+        retry: false,
+        enabled: !!ticker
     });
 
-    return {isLoading, isError, error, data};
+    const price = data ? data?.price : undefined;
+
+    return {isLoading, isError, error, price};
 }

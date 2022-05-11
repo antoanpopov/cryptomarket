@@ -21,10 +21,6 @@ export const SearchBar = () => {
         dispatch({type: QuoteActionTypes.SET_ASSET_PAIR, payload: value});
     }
 
-    useEffect(() => {
-        console.log(state);
-    }, [state]);
-
     return <Stack direction="row" spacing={2}>
         <Autocomplete
             disablePortal

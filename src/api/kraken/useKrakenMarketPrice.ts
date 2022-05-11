@@ -1,6 +1,23 @@
 import {useQuery} from "react-query";
 import {API_BASE_URL, QUERY} from "../constants";
 
+interface KrakenMarketPriceResponse {
+    error: string[],
+    result?: {
+        [key: string]: {
+            a: string[],
+            b: string[],
+            c: string[],
+            v: string[],
+            p: string[],
+            t: number[],
+            1: string[],
+            h: string[],
+            o: string
+        }
+    }
+}
+
 const fetchMarketPrice = async (ticker: string) => {
     const response: any = await fetch(`${API_BASE_URL.KRAKEN}/Ticker?pair=${ticker}`);
     if (!response.ok) {
@@ -15,10 +32,16 @@ export const useKrakenMarketPrice = (ticker: string) => {
         isError,
         error,
         data
-    } = useQuery<string, Error>([QUERY.KRAKEN_GET_TICKER], () => fetchMarketPrice(ticker), {
+    } = useQuery<KrakenMarketPriceResponse, Error>([QUERY.KRAKEN_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
         /*      refetchInterval: 5000*/
-        retry: false
+        retry: false,
+        enabled: !!ticker
     });
 
-    return {isLoading, isError, error, data};
+    // Since Kraken's ticker in the response is quite different from what we pass,
+    // we are getting the values of the first key and the first item in c (close)
+    // for latest the price.
+    const price = data?.result ? Object.values(data.result)[0].c[0] : undefined;
+
+    return {isLoading, isError, error, price};
 }

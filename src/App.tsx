@@ -1,9 +1,9 @@
 import React from 'react';
-import {OrderHistory} from "./components/order-history/order-history";
 import {SearchBar} from "./components/search-bar/search-bar";
 import {Box, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {AppBar} from "./components/layout/app-bar/app-bar";
 import {AppProvider} from "./store/provider";
+import {LatestPrice} from "./components/latest-price/latest-price";
 
 const darkTheme = createTheme({
     palette: {
@@ -21,8 +21,7 @@ function App() {
                     <Box>
                         <AppBar/>
                         <SearchBar/>
-                        {/*  <LatestPrice/>*/}
-                        <OrderHistory/>
+                        <LatestPrice/>
                     </Box>
                 </>
             </ThemeProvider>
