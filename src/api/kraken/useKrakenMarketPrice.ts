@@ -41,7 +41,7 @@ export const useKrakenMarketPrice = (ticker: string) => {
     // Since Kraken's ticker in the response is quite different from what we pass,
     // we are getting the values of the first key and the first item in c (close)
     // for latest the price.
-    const price = data?.result ? Object.values(data.result)[0].c[0] : undefined;
+    const price = data?.result ? Object.values(data.result)[0]?.c[0] : undefined;
 
     return {isLoading, isError, error, price};
 }

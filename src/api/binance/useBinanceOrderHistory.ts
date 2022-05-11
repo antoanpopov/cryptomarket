@@ -22,12 +22,12 @@ export const useBinanceOrderHistory = (ticker: string, market: string | null) =>
         isError,
         error,
         data
-    } = useQuery<BinanceOrderHistoryResponse[], Error>([QUERY.BINANCE_GET_HISTORY], () => fetchMarketHistory(ticker), {
+    } = useQuery<BinanceOrderHistoryResponse[], Error>([QUERY.BINANCE_GET_HISTORY, ticker], () => fetchMarketHistory(ticker), {
         /*      refetchInterval: 5000*/
         enabled: !!ticker && market === 'binance'
     });
 
-    const history = data?.map(order => ({price: order.price, isBuy: order.isBuyerMaker}));
+    const history = data?.map(order => ({amount: order.qty, isBuy: order.isBuyerMaker}));
 
     return {isLoading, isError, error, history};
 }

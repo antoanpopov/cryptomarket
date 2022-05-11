@@ -19,7 +19,7 @@ import {OrderHistoryModal} from "../order-history-modal/order-history.modal";
 
 export const LatestPrice = () => {
 
-    const {state: {baseAsset, quoteAsset, assetPair, queryTicker}} = useContext(AppContext);
+    const {state: {queryTicker}} = useContext(AppContext);
     const [selectedMarket, setSelectedMarket] = useState<string | null>(null);
     const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
