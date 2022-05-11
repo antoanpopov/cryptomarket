@@ -1,8 +1,8 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import {pairs, data} from "../../api/data";
-import {Stack} from "@mui/material";
-import {useContext, useEffect} from "react";
+import {data, pairs} from "../../api/data";
+import {Box, Stack} from "@mui/material";
+import {useContext} from "react";
 import {AppContext} from "../../store/context";
 import {QuoteActionTypes} from "../../store/actions";
 
@@ -21,7 +21,8 @@ export const SearchBar = () => {
         dispatch({type: QuoteActionTypes.SET_ASSET_PAIR, payload: value});
     }
 
-    return <Stack direction="row" spacing={2}>
+    return <Stack direction="row" spacing={2} paddingTop="20px" alignContent="center" justifyContent="center"
+                  alignItems="center">
         <Autocomplete
             disablePortal
             id="base-asset"
@@ -31,6 +32,7 @@ export const SearchBar = () => {
             onChange={onBaseAssetChange}
             renderInput={(params) => <TextField {...params} label="Base Asset"/>}
         />
+        <Box>+</Box>
         <Autocomplete
             disablePortal
             id="quote-asset"
@@ -40,6 +42,7 @@ export const SearchBar = () => {
             onChange={onQuoteAssetChange}
             renderInput={(params) => <TextField {...params} label="Quote Asset"/>}
         />
+        <Box>Or</Box>
         <Autocomplete
             disablePortal
             id="asset-pair"

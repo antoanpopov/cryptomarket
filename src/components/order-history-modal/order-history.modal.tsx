@@ -3,7 +3,6 @@ import {Box, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHea
 import Typography from "@mui/material/Typography";
 import {AppContext} from "../../store/context";
 import {useBinanceOrderHistory} from "../../api/binance/useBinanceOrderHistory";
-import {getActiveTicker} from "../../helpers/get-active-ticker";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -26,12 +25,8 @@ interface OrderHistoryModalProps {
 
 export const OrderHistoryModal = ({isOpen, handleClose, market}: OrderHistoryModalProps) => {
 
-    const {state} = useContext(AppContext);
-    const binanceHistoryResponse = useBinanceOrderHistory(getActiveTicker({
-        baseAsset: state.baseAsset,
-        quoteAsset: state.quoteAsset,
-        assetPair: state.assetPair
-    }), market);
+    const {state: {queryTicker}} = useContext(AppContext);
+    const binanceHistoryResponse = useBinanceOrderHistory(queryTicker, market);
 
     return (
         <Modal

@@ -18,7 +18,7 @@ function App() {
             <ThemeProvider theme={darkTheme}>
                 <>
                     <CssBaseline/>
-                    <Box>
+                    <Box padding="20px">
                         <AppBar/>
                         <SearchBar/>
                         <LatestPrice/>
