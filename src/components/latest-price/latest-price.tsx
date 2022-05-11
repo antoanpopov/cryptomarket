@@ -7,10 +7,11 @@ import {Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead,
 import {AppContext} from "../../store/context";
 import Typography from "@mui/material/Typography";
 import {OrderHistoryModal} from "../order-history-modal/order-history.modal";
+import {getActiveTicker} from "../../helpers/get-active-ticker";
 
 export const LatestPrice = () => {
 
-    const {state} = useContext(AppContext);
+    const {state: {baseAsset, quoteAsset, assetPair}} = useContext(AppContext);
     const [ticker, setTicker] = useState('');
     const [selectedMarket, setSelectedMarket] = useState<string | null>(null);
     const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
@@ -21,9 +22,14 @@ export const LatestPrice = () => {
     const bitfinexResponse = useBitfinexMarketPrice(ticker);
 
     useEffect(() => {
-        const customTicker = (!!state.baseAsset && !!state.quoteAsset) ? `${state.baseAsset}${state.quoteAsset}` : '';
-        setTicker(!!state.assetPair ? state.assetPair : customTicker);
-    }, [state]);
+
+        setTicker(getActiveTicker({
+            baseAsset,
+            quoteAsset,
+            assetPair
+        }));
+        console.log(ticker);
+    }, [baseAsset, quoteAsset, assetPair]);
 
     const renderPrice = (price?: string | number) => {
         return price ?? 'Ticker not supported by exchange.';
@@ -52,7 +58,7 @@ export const LatestPrice = () => {
                     <TableBody>
                         <TableRow
                             key="binance"
-                            sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                            sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
                             onClick={() => onClickMarketRow('binance')}
                         >
                             <TableCell component="th" scope="row">
@@ -64,7 +70,7 @@ export const LatestPrice = () => {
                             </TableCell>
                         </TableRow>
                         <TableRow key="bitfinex"
-                                  sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                                  sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
                                   onClick={() => onClickMarketRow('bitfinex')}
                         >
                             <TableCell component="th" scope="row">
@@ -75,7 +81,7 @@ export const LatestPrice = () => {
                                     <Skeleton animation="wave"/> : renderPrice(bitfinexResponse?.price)}
                             </TableCell>
                         </TableRow>
-                        <TableRow key="huobi" sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                        <TableRow key="huobi" sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
                                   onClick={() => onClickMarketRow('huobi')}>
                             <TableCell component="th" scope="row">
                                 Huobi
@@ -86,7 +92,7 @@ export const LatestPrice = () => {
                             </TableCell>
                         </TableRow>
                         <TableRow key="kraken"
-                                  sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                                  sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
                                   onClick={() => onClickMarketRow('kraken')}>
                             <TableCell component="th" scope="row">
                                 Kraken
