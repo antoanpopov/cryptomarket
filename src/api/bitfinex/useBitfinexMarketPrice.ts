@@ -28,7 +28,7 @@ export const useBitfinexMarketPrice = (ticker: string) => {
         error,
         data
     } = useQuery<number[], Error>([QUERY.BITFINEX_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker
     });

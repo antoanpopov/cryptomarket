@@ -24,7 +24,7 @@ export const useKrakenOrderHistory = (ticker: string, market: string | null) => 
         error,
         data
     } = useQuery<KrakenOrderHistoryResponse, Error>([QUERY.KRAKEN_GET_HISTORY, ticker], () => fetchMarketHistory(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker && market === 'kraken'
     });

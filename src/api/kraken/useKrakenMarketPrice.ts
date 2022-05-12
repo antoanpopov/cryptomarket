@@ -30,7 +30,7 @@ export const useKrakenMarketPrice = (ticker: string) => {
         error,
         data
     } = useQuery<KrakenMarketPriceResponse, Error>([QUERY.KRAKEN_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker
     });

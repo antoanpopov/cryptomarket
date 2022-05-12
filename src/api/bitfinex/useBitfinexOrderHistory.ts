@@ -16,7 +16,7 @@ export const useBitfinexOrderHistory = (ticker: string, market: string | null) =
         error,
         data
     } = useQuery<Array<number[]>, Error>([QUERY.BITFINEX_GET_HISTORY, ticker], () => fetchMarketHistory(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker && market === 'bitfinex'
     });

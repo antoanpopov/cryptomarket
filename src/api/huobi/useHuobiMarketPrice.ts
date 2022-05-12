@@ -29,7 +29,7 @@ export const useHuobiMarketPrice = (ticker: string) => {
         error,
         data
     } = useQuery<HuobiMarketPriceResponse, Error>([QUERY.HUOBI_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker
     });

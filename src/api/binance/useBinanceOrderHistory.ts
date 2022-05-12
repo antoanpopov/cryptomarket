@@ -23,7 +23,7 @@ export const useBinanceOrderHistory = (ticker: string, market: string | null) =>
         error,
         data
     } = useQuery<BinanceOrderHistoryResponse[], Error>([QUERY.BINANCE_GET_HISTORY, ticker], () => fetchMarketHistory(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         enabled: !!ticker && market === 'binance'
     });
 

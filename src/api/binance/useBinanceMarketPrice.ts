@@ -17,7 +17,7 @@ export const useBinanceMarketPrice = (ticker: string) => {
         error,
         data,
     } = useQuery<BinanceMarketPriceResponse, Error>([QUERY.BINANCE_GET_TICKER, ticker], () => fetchMarketPrice(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker
     });

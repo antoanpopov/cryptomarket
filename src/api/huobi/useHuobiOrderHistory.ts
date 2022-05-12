@@ -28,7 +28,7 @@ export const useHuobiOrderHistory = (ticker: string, market: string | null) => {
         error,
         data
     } = useQuery<HuobiOrderHistoryResponse, Error>([QUERY.HUOBI_GET_HISTORY, ticker], () => fetchMarketHistory(ticker), {
-        /*      refetchInterval: 5000*/
+        refetchInterval: 5000,
         retry: false,
         enabled: !!ticker && market === 'huobi'
     });
