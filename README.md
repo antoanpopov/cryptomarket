@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Demo Crypto Market Watcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![homepage](screenshots/homepage.png)
 
-## Available Scripts
+### To start the project run the following commands:
 
-In the project directory, you can run:
+```
+yarn
+yarn start
+```
 
-### `npm start`
+`yarn start` is modified to start both the node.js backend and react SPA at the same time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In order to avoid CORS errors, the client had to run web browser extension OR as it is in this case, all the requests
+are sent to the local node.js backend that has the `cors` plugin which solves the mentioned issue.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> *All data is re-fetched each 5 seconds!*
 
-### `npm test`
+> *All Tables support `ASC/DESC` sorting, although, by default the order is from newest to oldest orders.*
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Available pages
 
-### `npm run build`
+`/` - Home (allows the user to select manually the assets OR select predefined pair)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- if the selected pair is not available on the exchange, the user should not encounter any errors and instead the
+  following message should be displayed:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![unsupported ticker](screenshots/unsupported-ticker.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- if the user clicks on any market row a modal should pop-up showing the latest trade for the selected asset pair.
 
-### `npm run eject`
+![order history modal](screenshots/modal.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`/:pair` Direct share-able link to a specific pair.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![asset pair page](screenshots/asset-pair-page.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`/:pair/details` - Details page for asset pair that also shows the latest trades from all markets.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![asset pair details page](screenshots/asset-pair-details-page.png)
