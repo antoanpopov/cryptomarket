@@ -1,5 +1,15 @@
-import React from "react";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TableSortLabel,
+    Typography
+} from "@mui/material";
 import {roundAmount} from "../../helpers/round-amount";
 
 interface OrdersTableProps {
@@ -10,16 +20,37 @@ interface OrdersTableProps {
 }
 
 export const OrdersTable = ({items}: OrdersTableProps) => {
+
+    const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+    const [sortedItems, setSortedItems] = useState(items);
+
+    useEffect(() => {
+        if (items) {
+            const customSortedItems = Object.values(items).sort((a, b) => {
+                return order === 'asc' ? (roundAmount(a.amount) - roundAmount(b.amount)) : (roundAmount(b.amount) - roundAmount(a.amount));
+            });
+            setSortedItems(customSortedItems);
+        }
+    }, [items, order]);
+
+    const toggleSortOrder = () => {
+        setOrder(order === 'asc' ? 'desc' : 'asc');
+    }
+
     return (<>
         {items ? <TableContainer component={Paper} sx={{maxHeight: '90%', paddingBottom: '20px'}}>
             <Table sx={{width: '100%'}} size="small" stickyHeader aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Amount</TableCell>
+                        <TableCell>
+                            <TableSortLabel active={true} direction={order} onClick={toggleSortOrder}>
+                                Amount
+                            </TableSortLabel>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {items.map((order, id) => (
+                    {sortedItems!.map((order, id) => (
                         <TableRow
                             key={`${id}-${order.amount}`}
                             sx={{
