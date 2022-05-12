@@ -17,7 +17,7 @@ enum TickerResponseKeys {
 const fetchMarketPrice = async (ticker: string) => {
     // Unlike other markets, in Bitfinex USDT's key is UST so we need to replace it
     const formattedTicker = ticker.replace('USDT', 'UST');
-    const response: any = await fetch(`${API_BASE_URL.BITFINEX}/ticker/t${formattedTicker}`);
+    const response = await fetch(`${API_BASE_URL.BITFINEX}/ticker/t${formattedTicker}`);
     return response.json();
 }
 

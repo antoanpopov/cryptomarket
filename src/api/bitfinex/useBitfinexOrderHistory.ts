@@ -5,7 +5,7 @@ const fetchMarketHistory = async (ticker: string) => {
 
     // Unlike other markets, in Bitfinex USDT's key is UST so we need to replace it
     const formattedTicker = ticker.replace('USDT', 'UST');
-    const response: any = await fetch(`${API_BASE_URL.BITFINEX}/trades/t${formattedTicker}/hist`);
+    const response = await fetch(`${API_BASE_URL.BITFINEX}/trades/t${formattedTicker}/hist`);
     return response.json();
 }
 

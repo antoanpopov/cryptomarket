@@ -19,7 +19,7 @@ interface KrakenMarketPriceResponse {
 }
 
 const fetchMarketPrice = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.KRAKEN}/Ticker?pair=${ticker}`);
+    const response = await fetch(`${API_BASE_URL.KRAKEN}/Ticker?pair=${ticker}`);
     return response.json();
 }
 

@@ -1,8 +1,8 @@
 export enum API_BASE_URL {
-    BINANCE = 'https://api.binance.com/api/v3',
-    BITFINEX = 'https://api-pub.bitfinex.com/v2',
-    HUOBI = 'https://api.huobi.pro',
-    KRAKEN = 'https://api.kraken.com/0/public',
+    BINANCE = 'http://localhost:3001/binance',
+    BITFINEX = 'http://localhost:3001/bitfinex',
+    HUOBI = 'http://localhost:3001/huobi',
+    KRAKEN = 'http://localhost:3001/kraken',
 }
 
 export enum QUERY {

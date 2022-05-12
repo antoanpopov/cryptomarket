@@ -17,7 +17,7 @@ interface HuobiOrderHistoryResponse {
 }
 
 const fetchMarketHistory = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.HUOBI}/market/history/trade?symbol=${ticker.toLowerCase()}&size=100`);
+    const response = await fetch(`${API_BASE_URL.HUOBI}/market/history/trade?symbol=${ticker.toLowerCase()}&size=100`);
     return response.json();
 }
 

@@ -14,6 +14,9 @@
     "@types/node": "^16.11.33",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "expres": "^0.0.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.38.1",
@@ -23,7 +26,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "node server.js",
+    "client": "yarn react-scripts start --prefix client",
+    "start": "concurrently \"yarn server\" \"yarn client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "concurrently": "^7.1.0"
   }
 }

@@ -24,7 +24,7 @@ export const AssetPairDetailsPage = () => {
         if (pair && pairs.some(asset => asset === pair)) {
             dispatch({type: QuoteActionTypes.SET_ASSET_PAIR, payload: pair.toUpperCase()})
         }
-    }, []);
+    }, [pair, dispatch]);
 
     return <>
         <LatestPrice/>

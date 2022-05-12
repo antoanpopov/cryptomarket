@@ -6,7 +6,7 @@ interface BinanceMarketPriceResponse {
 }
 
 const fetchMarketPrice = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.BINANCE}/ticker/price?symbol=${ticker}`);
+    const response = await fetch(`${API_BASE_URL.BINANCE}/ticker/price?symbol=${ticker}`);
     return response.json();
 }
 

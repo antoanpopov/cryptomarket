@@ -13,7 +13,7 @@ interface KrakenOrderHistoryResponse {
 }
 
 const fetchMarketHistory = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.KRAKEN}/Depth?pair=${ticker}`);
+    const response = await fetch(`${API_BASE_URL.KRAKEN}/Depth?pair=${ticker}`);
     return response.json();
 }
 

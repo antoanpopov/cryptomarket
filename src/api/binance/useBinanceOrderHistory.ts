@@ -12,7 +12,7 @@ interface BinanceOrderHistoryResponse {
 }
 
 const fetchMarketHistory = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.BINANCE}/trades?symbol=${ticker}`);
+    const response = await fetch(`${API_BASE_URL.BINANCE}/trades?symbol=${ticker}`);
     return response.json();
 }
 

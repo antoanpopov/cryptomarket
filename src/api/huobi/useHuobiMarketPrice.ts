@@ -18,7 +18,7 @@ interface HuobiMarketPriceResponse {
 }
 
 const fetchMarketPrice = async (ticker: string) => {
-    const response: any = await fetch(`${API_BASE_URL.HUOBI}/market/detail?symbol=${ticker.toLowerCase()}`);
+    const response = await fetch(`${API_BASE_URL.HUOBI}/market/detail?symbol=${ticker.toLowerCase()}`);
     return response.json();
 }
 
