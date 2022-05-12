@@ -4,6 +4,7 @@ import {Box, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {AppBar} from "./components/layout/app-bar/app-bar";
 import {AppProvider} from "./store/provider";
 import {LatestPrice} from "./components/latest-price/latest-price";
+import {Router} from "./pages/router";
 
 const darkTheme = createTheme({
     palette: {
@@ -20,8 +21,7 @@ function App() {
                     <CssBaseline/>
                     <Box padding="20px">
                         <AppBar/>
-                        <SearchBar/>
-                        <LatestPrice/>
+                        <Router/>
                     </Box>
                 </>
             </ThemeProvider>

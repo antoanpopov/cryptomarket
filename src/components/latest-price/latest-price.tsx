@@ -60,8 +60,11 @@ export const LatestPrice = () => {
                             <TableBody>
                                 <TableRow
                                     key="binance"
-                                    sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
-                                    onClick={() => onClickMarketRow('binance')}
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {border: 0},
+                                        cursor: binanceResponse?.price ? 'pointer' : 'not-allowed'
+                                    }}
+                                    onClick={() => binanceResponse?.price && onClickMarketRow('binance')}
                                 >
                                     <TableCell component="th" scope="row">
                                         Binance
@@ -72,8 +75,11 @@ export const LatestPrice = () => {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow key="bitfinex"
-                                          sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
-                                          onClick={() => onClickMarketRow('bitfinex')}
+                                          sx={{
+                                              '&:last-child td, &:last-child th': {border: 0},
+                                              cursor: bitfinexResponse?.price ? 'pointer' : 'not-allowed'
+                                          }}
+                                          onClick={() => bitfinexResponse?.price && onClickMarketRow('bitfinex')}
                                 >
                                     <TableCell component="th" scope="row">
                                         Bitfinex
@@ -84,8 +90,11 @@ export const LatestPrice = () => {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow key="huobi"
-                                          sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
-                                          onClick={() => onClickMarketRow('huobi')}>
+                                          sx={{
+                                              '&:last-child td, &:last-child th': {border: 0},
+                                              cursor: huobiResponse?.price ? 'pointer' : 'not-allowed'
+                                          }}
+                                          onClick={() => huobiResponse?.price && onClickMarketRow('huobi')}>
                                     <TableCell component="th" scope="row">
                                         Huobi
                                     </TableCell>
@@ -95,8 +104,11 @@ export const LatestPrice = () => {
                                     </TableCell>
                                 </TableRow>
                                 <TableRow key="kraken"
-                                          sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: 'pointer'}}
-                                          onClick={() => onClickMarketRow('kraken')}>
+                                          sx={{
+                                              '&:last-child td, &:last-child th': {border: 0},
+                                              cursor: krakenResponse?.price ? 'pointer' : 'not-allowed'
+                                          }}
+                                          onClick={() => krakenResponse?.price && onClickMarketRow('kraken')}>
                                     <TableCell component="th" scope="row">
                                         Kraken
                                     </TableCell>

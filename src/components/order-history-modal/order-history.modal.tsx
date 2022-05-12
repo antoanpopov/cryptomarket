@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import {AppContext} from "../../store/context";
 import {useBinanceOrderHistory} from "../../api/binance/useBinanceOrderHistory";
 import {SkeletonTable} from "./skeleton-table";
-import {OrdersTable} from "./orders-table";
+import {OrdersTable} from "../orders-table/orders-table";
 import {useBitfinexOrderHistory} from "../../api/bitfinex/useBitfinexOrderHistory";
 import {useKrakenOrderHistory} from "../../api/kraken/useKrakenOrderHistory";
 import {useHuobiOrderHistory} from "../../api/huobi/useHuobiOrderHistory";

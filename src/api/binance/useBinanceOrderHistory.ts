@@ -27,7 +27,10 @@ export const useBinanceOrderHistory = (ticker: string, market: string | null) =>
         enabled: !!ticker && market === 'binance'
     });
 
-    const history = data?.map(order => ({amount: order.qty, isBuy: order.isBuyerMaker}));
+    const history = (data && Array.isArray(data)) ? data?.map(order => ({
+        amount: order.qty,
+        isBuy: order.isBuyerMaker
+    })) : undefined;
 
     return {isLoading, isError, error, history};
 }

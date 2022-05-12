@@ -21,7 +21,10 @@ export const useBitfinexOrderHistory = (ticker: string, market: string | null) =
         enabled: !!ticker && market === 'bitfinex'
     });
 
-    const history = data?.map(order => ({amount: Math.abs(order[2]).toString(), isBuy: order[2] > 0}));
+    const history = (data && data.length > 0) ? data.map(order => ({
+        amount: Math.abs(order[2]).toString(),
+        isBuy: order[2] > 0
+    })) : undefined;
 
     return {isLoading, isError, error, history};
 }
