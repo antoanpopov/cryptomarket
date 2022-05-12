@@ -21,19 +21,23 @@ interface OrdersTableProps {
 
 export const OrdersTable = ({items}: OrdersTableProps) => {
 
+    const [isSortingActive, setIsSortingActive] = useState(false);
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
     const [sortedItems, setSortedItems] = useState(items);
 
     useEffect(() => {
-        if (items) {
+        if (items && isSortingActive) {
             const customSortedItems = Object.values(items).sort((a, b) => {
                 return order === 'asc' ? (roundAmount(a.amount) - roundAmount(b.amount)) : (roundAmount(b.amount) - roundAmount(a.amount));
             });
             setSortedItems(customSortedItems);
+        } else {
+            setSortedItems(items);
         }
-    }, [items, order]);
+    }, [items, order, isSortingActive]);
 
     const toggleSortOrder = () => {
+        setIsSortingActive(true);
         setOrder(order === 'asc' ? 'desc' : 'asc');
     }
 
@@ -43,7 +47,7 @@ export const OrdersTable = ({items}: OrdersTableProps) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                            <TableSortLabel active={true} direction={order} onClick={toggleSortOrder}>
+                            <TableSortLabel active={isSortingActive} direction={order} onClick={toggleSortOrder}>
                                 Amount
                             </TableSortLabel>
                         </TableCell>
